@@ -1,0 +1,55 @@
+syntax = "proto2";
+package cs;
+
+enum proto_id {
+    login_req_id = 1;  
+    login_resp_id = 2;
+    create_room_req_id = 3;
+    create_room_resp_id = 4;
+    open_door_req_id = 5;
+    open_door_resp_id = 6;
+    close_door_req_id = 7;
+    close_door_resp_id = 8;
+    join_room_req_id = 9;
+    join_room_resp_id = 10;
+}
+
+message login_req {
+    required proto_id id = 1 [default = login_req_id];
+}
+
+message login_resp {
+    required proto_id id = 1 [default = login_resp_id];
+}
+
+message create_room_req {
+    required proto_id id = 1 [default = create_room_req_id];
+}
+
+message create_room_resp {
+    required proto_id id = 1 [default = create_room_resp_id];
+}
+
+message open_door_req {
+    required proto_id id = 1 [default = open_door_req_id];
+}
+
+message open_door_resp {
+    required proto_id id = 1 [default = open_door_resp_id];
+}
+
+message close_door_req {
+    required proto_id id = 1 [default = close_door_req_id];
+}
+
+message close_door_resp {
+    required proto_id id = 1 [default = close_door_resp_id];
+}
+
+message join_room_req {
+    required proto_id id = 1 [default = join_room_req_id];
+}
+
+message join_room_resp {
+    required proto_id id = 1 [default = join_room_resp_id];
+}

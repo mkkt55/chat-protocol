@@ -1,5 +1,5 @@
 syntax = "proto2";
-package cs;
+package main;
 
 enum proto_id {
     login_req_id = 1;  

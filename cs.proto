@@ -15,41 +15,41 @@ enum proto_id {
 }
 
 message login_req {
-    required proto_id id = 1 [default = login_req_id];
+    optional proto_id id = 1 [default = login_req_id];
 }
 
 message login_resp {
-    required proto_id id = 1 [default = login_resp_id];
+    optional proto_id id = 1 [default = login_resp_id];
 }
 
 message create_room_req {
-    required proto_id id = 1 [default = create_room_req_id];
+    optional proto_id id = 1 [default = create_room_req_id];
 }
 
 message create_room_resp {
-    required proto_id id = 1 [default = create_room_resp_id];
+    optional proto_id id = 1 [default = create_room_resp_id];
 }
 
 message open_door_req {
-    required proto_id id = 1 [default = open_door_req_id];
+    optional proto_id id = 1 [default = open_door_req_id];
 }
 
 message open_door_resp {
-    required proto_id id = 1 [default = open_door_resp_id];
+    optional proto_id id = 1 [default = open_door_resp_id];
 }
 
 message close_door_req {
-    required proto_id id = 1 [default = close_door_req_id];
+    optional proto_id id = 1 [default = close_door_req_id];
 }
 
 message close_door_resp {
-    required proto_id id = 1 [default = close_door_resp_id];
+    optional proto_id id = 1 [default = close_door_resp_id];
 }
 
 message join_room_req {
-    required proto_id id = 1 [default = join_room_req_id];
+    optional proto_id id = 1 [default = join_room_req_id];
 }
 
 message join_room_resp {
-    required proto_id id = 1 [default = join_room_resp_id];
+    optional proto_id id = 1 [default = join_room_resp_id];
 }

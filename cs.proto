@@ -4,52 +4,131 @@ package main;
 enum proto_id {
     login_req_id = 1;  
     login_resp_id = 2;
-    create_room_req_id = 3;
-    create_room_resp_id = 4;
-    open_door_req_id = 5;
-    open_door_resp_id = 6;
-    close_door_req_id = 7;
-    close_door_resp_id = 8;
-    join_room_req_id = 9;
-    join_room_resp_id = 10;
+
+	create_room_req_id = 1001;
+    create_room_resp_id = 1002;
+	dismiss_room_req_id = 1003;
+    dismiss_room_resp_id = 1004;
+    change_room_settings_req_id = 1005;
+    change_room_settings_resp_id = 1006;
+	change_room_settings_ntf_id = 1007;
+
+    join_room_req_id = 2001;
+    join_room_resp_id = 2002;
+    change_join_name_req_id = 2003;
+    change_join_name_resp_id = 2004;
+	send_info_req_id = 2005;
+	send_info_resp_id = 2006;
+	exit_room_req_id = 2007;
+	exit_room_resp_id = 2008;
+}
+
+enum error_id {
+	none = 1;
+	room_name_invalid = 2;
+	room_id_not_exist = 3;
+	opt_disallowed_not_room_holder = 4;
+	join_room_name_invalid = 5;
 }
 
 message login_req {
     optional proto_id id = 1 [default = login_req_id];
+	optional string auth = 2;
 }
 
 message login_resp {
     optional proto_id id = 1 [default = login_resp_id];
+	optional string auth = 2;
 }
+
+//////////////////////////////////////////////////////////////
 
 message create_room_req {
     optional proto_id id = 1 [default = create_room_req_id];
+	optional room_settings settings = 3;
+}
+
+message room_settings {
+	optional string room_name = 1;
+	optional bool open = 2 [default = true];
 }
 
 message create_room_resp {
     optional proto_id id = 1 [default = create_room_resp_id];
+	optional error_id error = 2;
 }
 
-message open_door_req {
-    optional proto_id id = 1 [default = open_door_req_id];
+message dismiss_room_req {
+    optional proto_id id = 1 [default = dismiss_room_req_id];
+	optional string room_id = 2;
 }
 
-message open_door_resp {
-    optional proto_id id = 1 [default = open_door_resp_id];
+message dismiss_room_resp {
+    optional proto_id id = 1 [default = dismiss_room_resp_id];
+	optional error_id error = 2;
 }
 
-message close_door_req {
-    optional proto_id id = 1 [default = close_door_req_id];
+message change_room_settings_req {
+    optional proto_id id = 1 [default = change_room_settings_req_id];
+	optional int64 room_id = 2;
+	optional room_settings settings = 3;
 }
 
-message close_door_resp {
-    optional proto_id id = 1 [default = close_door_resp_id];
+message change_room_settings_resp {
+    optional proto_id id = 1 [default = change_room_settings_resp_id];
+	optional error_id error = 2;
 }
+
+message change_room_settings_ntf {
+    optional proto_id id = 1 [default = change_room_settings_ntf_id];
+	optional int64 room_id = 2;
+	optional room_settings settings = 3;
+}
+
+//////////////////////////////////////////////////////////////
 
 message join_room_req {
     optional proto_id id = 1 [default = join_room_req_id];
+	optional int64 room_id = 2;
+	optional join_settings settings = 3;
+}
+
+message join_settings {
+	optional string join_name = 1;
 }
 
 message join_room_resp {
     optional proto_id id = 1 [default = join_room_resp_id];
+	optional error_id error = 2;
+}
+
+message change_join_settings_req {
+	optional proto_id id = 1 [ default = change_join_name_req_id];
+	optional join_settings settings = 3;
+}
+
+message change_join_settings_resp {
+	optional proto_id id = 1 [ default = change_join_name_resp_id];
+	optional error_id error = 2;
+}
+
+message send_info_req {
+    optional proto_id id = 1 [default = send_info_req_id];
+	optional int64 room_id = 2;
+	optional string info = 3;
+}
+
+message send_info_resp {
+    optional proto_id id = 1 [default = send_info_resp_id];
+	optional error_id error = 2;
+}
+
+message exit_room_req {
+    optional proto_id id = 1 [default = exit_room_req_id];
+	optional int64 room_id = 2;
+}
+
+message exit_room_resp {
+    optional proto_id id = 1 [default = exit_room_resp_id];
+	optional error_id error = 2;
 }

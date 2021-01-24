@@ -15,8 +15,8 @@ enum proto_id {
 
     join_room_req_id = 2001;
     join_room_resp_id = 2002;
-    change_join_name_req_id = 2003;
-    change_join_name_resp_id = 2004;
+    change_join_settings_req_id = 2003;
+    change_join_settings_resp_id = 2004;
 	send_info_req_id = 2005;
 	send_info_resp_id = 2006;
 	exit_room_req_id = 2007;
@@ -42,7 +42,8 @@ message login_req {
 
 message login_resp {
     optional proto_id id = 1 [default = login_resp_id];
-	optional string auth = 2;
+	optional error_id error = 2;
+	optional string auth = 3;
 }
 
 //////////////////////////////////////////////////////////////
@@ -107,12 +108,12 @@ message join_room_resp {
 }
 
 message change_join_settings_req {
-	optional proto_id id = 1 [ default = change_join_name_req_id];
+	optional proto_id id = 1 [ default = change_join_settings_req_id];
 	optional join_settings settings = 3;
 }
 
 message change_join_settings_resp {
-	optional proto_id id = 1 [ default = change_join_name_resp_id];
+	optional proto_id id = 1 [ default = change_join_settings_resp_id];
 	optional error_id error = 2;
 }
 

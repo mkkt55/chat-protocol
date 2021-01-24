@@ -24,11 +24,15 @@ enum proto_id {
 }
 
 enum error_id {
-	none = 1;
-	room_name_invalid = 2;
-	room_id_not_exist = 3;
-	opt_disallowed_not_room_holder = 4;
-	join_room_name_invalid = 5;
+	err_none = 0;
+	err_unknown = 1;
+	err_parsing_proto = 2;
+	
+	err_room_name_invalid = 1001;
+	err_room_id_not_exist = 1002;
+	err_opt_disallowed_not_room_holder = 1003;
+	
+	err_join_room_name_invalid = 2001;
 }
 
 message login_req {

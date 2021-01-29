@@ -5,13 +5,15 @@ enum proto_id {
     login_req_id = 1;  
     login_resp_id = 2;
 
-	create_room_req_id = 1001;
-    create_room_resp_id = 1002;
-	dismiss_room_req_id = 1003;
-    dismiss_room_resp_id = 1004;
-    change_room_settings_req_id = 1005;
-    change_room_settings_resp_id = 1006;
-	change_room_settings_ntf_id = 1007;
+	get_all_room_list_req_id = 1001;
+	get_all_room_list_resp_id = 1002;
+	create_room_req_id = 1003;
+    create_room_resp_id = 1004;
+	dismiss_room_req_id = 1005;
+    dismiss_room_resp_id = 1006;
+    change_room_settings_req_id = 1007;
+    change_room_settings_resp_id = 1008;
+	change_room_settings_ntf_id = 1009;
 
     join_room_req_id = 2001;
     join_room_resp_id = 2002;
@@ -48,9 +50,18 @@ message login_resp {
 
 //////////////////////////////////////////////////////////////
 
+message get_all_room_list_req {
+	optional proto_id id = 1 [default = get_all_room_list_req_id];
+}
+
+message get_all_room_list_resp {
+	optional proto_id id = 1 [default = get_all_room_list_resp_id];
+	repeated int32 room_ids = 2;
+}
+
 message create_room_req {
     optional proto_id id = 1 [default = create_room_req_id];
-	optional room_settings settings = 3;
+	optional room_settings settings = 2;
 }
 
 message room_settings {
@@ -60,12 +71,13 @@ message room_settings {
 
 message create_room_resp {
     optional proto_id id = 1 [default = create_room_resp_id];
-	optional error_id error = 2;
+	optional int32 new_room_id = 2;
+	optional error_id error = 3;
 }
 
 message dismiss_room_req {
     optional proto_id id = 1 [default = dismiss_room_req_id];
-	optional string room_id = 2;
+	optional int32 room_id = 2;
 }
 
 message dismiss_room_resp {
@@ -75,7 +87,7 @@ message dismiss_room_resp {
 
 message change_room_settings_req {
     optional proto_id id = 1 [default = change_room_settings_req_id];
-	optional int64 room_id = 2;
+	optional int32 room_id = 2;
 	optional room_settings settings = 3;
 }
 
@@ -86,7 +98,7 @@ message change_room_settings_resp {
 
 message change_room_settings_ntf {
     optional proto_id id = 1 [default = change_room_settings_ntf_id];
-	optional int64 room_id = 2;
+	optional int32 room_id = 2;
 	optional room_settings settings = 3;
 }
 
@@ -94,7 +106,7 @@ message change_room_settings_ntf {
 
 message join_room_req {
     optional proto_id id = 1 [default = join_room_req_id];
-	optional int64 room_id = 2;
+	optional int32 room_id = 2;
 	optional join_settings settings = 3;
 }
 
@@ -119,7 +131,7 @@ message change_join_settings_resp {
 
 message send_info_req {
     optional proto_id id = 1 [default = send_info_req_id];
-	optional int64 room_id = 2;
+	optional int32 room_id = 2;
 	optional string info = 3;
 }
 
@@ -130,7 +142,7 @@ message send_info_resp {
 
 message exit_room_req {
     optional proto_id id = 1 [default = exit_room_req_id];
-	optional int64 room_id = 2;
+	optional int32 room_id = 2;
 }
 
 message exit_room_resp {

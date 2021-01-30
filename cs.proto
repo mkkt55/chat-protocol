@@ -21,8 +21,9 @@ enum proto_id {
     change_join_settings_resp_id = 2004;
 	send_info_req_id = 2005;
 	send_info_resp_id = 2006;
-	exit_room_req_id = 2007;
-	exit_room_resp_id = 2008;
+	recv_info_ntf_id = 2007;
+	exit_room_req_id = 2008;
+	exit_room_resp_id = 2009;
 }
 
 enum error_id {
@@ -138,6 +139,13 @@ message send_info_req {
 message send_info_resp {
     optional proto_id id = 1 [default = send_info_resp_id];
 	optional error_id error = 2;
+}
+
+message recv_info_ntf {
+	optional proto_id id = 1 [default = recv_info_ntf_id];
+	optional int32 room_id = 2;
+	optional string sender_name = 3;
+	optional string msg = 4;
 }
 
 message exit_room_req {

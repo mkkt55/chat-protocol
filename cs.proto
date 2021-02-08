@@ -38,6 +38,7 @@ enum error_id {
 	err_opt_disallowed_not_room_holder = 1003;
 	
 	err_join_room_name_invalid = 2001;
+	err_join_room_close = 2002;
 }
 
 message login_req {

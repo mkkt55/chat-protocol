@@ -53,6 +53,7 @@ message login_resp {
     optional proto_id id = 1 [default = login_resp_id];
 	optional error_id error = 2;
 	optional string auth = 3;
+	optional int32 cur_room_id = 4;
 }
 
 //////////////////////////////////////////////////////////////

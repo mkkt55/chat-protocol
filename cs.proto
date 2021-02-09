@@ -39,11 +39,14 @@ enum error_id {
 	
 	err_join_room_name_invalid = 2001;
 	err_join_room_close = 2002;
+	
+	err_reconn_too_late = 3001;
 }
 
 message login_req {
     optional proto_id id = 1 [default = login_req_id];
 	optional string auth = 2;
+	optional bool is_reconn = 3;
 }
 
 message login_resp {
